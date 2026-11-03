@@ -12,7 +12,7 @@ from urllib.parse import urlsplit
 SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 
-def repository_parts(value: str):
+def github_url_parts(value: str):
     parsed = urlsplit(value)
     try:
         port_ok = parsed.port in (None, 443)
@@ -29,9 +29,25 @@ def repository_parts(value: str):
     ):
         return None
     parts = [part for part in parsed.path.strip("/").split("/") if part]
-    if len(parts) != 2 or not all(parts):
+    if len(parts) < 2 or not all(parts):
         return None
-    return parts[0], parts[1].removesuffix(".git")
+    return parts[0], parts[1].removesuffix(".git"), parts
+
+def repository_parts(value: str):
+    parts = github_url_parts(value)
+    if parts is None or len(parts[2]) != 2:
+        return None
+    return parts[0], parts[1]
+
+def guide_matches(value: str, repository: tuple[str, str]) -> bool:
+    parts = github_url_parts(value)
+    return (
+        parts is not None
+        and parts[:2] == repository
+        and len(parts[2]) >= 5
+        and parts[2][2:4] == ["blob", "main"]
+        and parts[2][-1].lower().endswith(".md")
+    )
 
 
 def validate_manifest(data: object) -> list[str]:
@@ -74,11 +90,8 @@ def validate_manifest(data: object) -> list[str]:
 
         for field in ("human_guide", "agent_guide"):
             guide = project.get(field)
-            guide_parts = repository_parts(guide) if isinstance(guide, str) else None
-            if guide_parts != repo_parts or not isinstance(guide, str) or "/blob/main/" not in guide:
-                errors.append(f"{prefix}.{field} must point to a Markdown guide in the same repository")
-            elif not guide.lower().endswith(".md"):
-                errors.append(f"{prefix}.{field} must point to a Markdown file")
+            if not isinstance(guide, str) or not guide_matches(guide, repo_parts):
+                errors.append(f"{prefix}.{field} must point to a Markdown guide in the same repository on main")
 
     limitations = data.get("limitations")
     if not isinstance(limitations, list) or not all(
