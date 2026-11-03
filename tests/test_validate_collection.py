@@ -37,6 +37,12 @@ class CollectionManifestTests(unittest.TestCase):
         data["projects"][0]["id"] = "Not A Slug"
         self.assertTrue(any("lowercase slug" in error for error in validate_manifest(data)))
 
+    def test_rejects_invalid_url_ports(self):
+        data = deepcopy(VALID)
+        data["projects"][0]["repository"] = "https://github.com:invalid/example/project"
+        errors = validate_manifest(data)
+        self.assertTrue(any("repository must be" in error for error in errors))
+
     def test_rejects_noncanonical_repository_hosts(self):
         data = deepcopy(VALID)
         data["projects"][0]["repository"] = "https://github.com.evil.example/example/project"
