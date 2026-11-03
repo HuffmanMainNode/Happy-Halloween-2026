@@ -7,6 +7,8 @@ from scripts.validate_collection import validate_manifest
 VALID = {
     "schema_version": "1.0.0",
     "collection": "Halloween 2026",
+    "maintainer": "HuffmanMainNode",
+    "tagline": "Instead of passing out candy, we are passing out algorithms.",
     "projects": [{
         "id": "example-project",
         "name": "Example Project",
