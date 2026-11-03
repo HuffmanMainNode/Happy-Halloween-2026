@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "collection": "Happy Halloween 2026",
+  "maintainer": "HuffmanMainNode",
+  "tagline": "Instead of passing out candy, we're passing out algorithms.",
+  "projects": [
+    {
+      "id": "halloween-osint-2026",
+      "name": "Halloween OSINT 2026",
+      "repository": "https://github.com/HuffmanMainNode/Halloween-OSINT-2026",
+      "purpose": "Local-first evidence manifests, passive DNS/TLS observations, offline transaction analysis, and local MCP tools.",
+      "human_guide": "https://github.com/HuffmanMainNode/Halloween-OSINT-2026/blob/main/docs/USER-ONBOARDING.md",
+      "agent_guide": "https://github.com/HuffmanMainNode/Halloween-OSINT-2026/blob/main/docs/AGENT-INTEGRATION.md"
+    },
+    {
+      "id": "open-intelligence-exchange",
+      "name": "Open Intelligence Exchange",
+      "repository": "https://github.com/HuffmanMainNode/Open-Intelligence-Exchange",
+      "purpose": "Experimental protocol for signed agent identities, verified messages, optional encryption, and approval-gated exchange.",
+      "human_guide": "https://github.com/HuffmanMainNode/Open-Intelligence-Exchange/blob/main/docs/USER-ONBOARDING.md",
+      "agent_guide": "https://github.com/HuffmanMainNode/Open-Intelligence-Exchange/blob/main/docs/AGENT-ONBOARDING.md"
+    },
+    {
+      "id": "huffman-cyber-observatory",
+      "name": "Huffman Cyber Observatory",
+      "repository": "https://github.com/HuffmanMainNode/Huffman-Cyber-Observatory",
+      "purpose": "Local defensive security checks, evidence integrity, SBOM inventory, KEV correlation, and file cryptography.",
+      "human_guide": "https://github.com/HuffmanMainNode/Huffman-Cyber-Observatory/blob/main/docs/USER-ONBOARDING.md",
+      "agent_guide": "https://github.com/HuffmanMainNode/Huffman-Cyber-Observatory/blob/main/docs/AGENT-ONBOARDING.md"
+    },
+    {
+      "id": "open-swarm",
+      "name": "Open-Swarm",
+      "repository": "https://github.com/HuffmanMainNode/-Open-Swarm",
+      "purpose": "Local-first task orchestration, bounded workers, approval gates, and durable event handling.",
+      "human_guide": "https://github.com/HuffmanMainNode/-Open-Swarm/blob/main/docs/USER-ONBOARDING.md",
+      "agent_guide": "https://github.com/HuffmanMainNode/-Open-Swarm/blob/main/docs/AGENT-ONBOARDING.md"
+    },
+    {
+      "id": "huffman-defensive-intelligence",
+      "name": "Huffman Defensive Intelligence",
+      "repository": "https://github.com/HuffmanMainNode/Huffman-Defensive-Intelligence",
+      "purpose": "Integration layer connecting the four projects through versioned events and evidence references.",
+      "human_guide": "https://github.com/HuffmanMainNode/Huffman-Defensive-Intelligence/blob/main/docs/USER-ONBOARDING.md",
+      "agent_guide": "https://github.com/HuffmanMainNode/Huffman-Defensive-Intelligence/blob/main/docs/AGENT-ONBOARDING.md"
+    }
+  ],
+  "limitations": [
+    "This is a project index, not an executable application.",
+    "Projects are independent and have different maturity levels.",
+    "Listing a project does not certify its security, license, or production readiness."
+  ]
+}
