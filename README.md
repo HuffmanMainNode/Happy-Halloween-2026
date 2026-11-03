@@ -39,7 +39,7 @@ This is an index and community landing page, not a separate OSINT application. T
 
 These projects are independent and at different maturity levels. Their presence in this index is not an endorsement or security certification. Agent identity signatures do not prove real-world identity or truth; a hash does not prove source authenticity; a catalog entry does not prove a tool is safe. Review each project's current documentation and threat model.
 
-The machine-readable [collection index](collection.json) provides the same project links for scripts and agents.
+The machine-readable [collection index](collection.json) provides the same project links for scripts and agents. Its structure is defined by [the JSON Schema](schemas/collection.schema.json) and checked locally by the dependency-free validator.
 
 ---
 
