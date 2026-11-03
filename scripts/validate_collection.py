@@ -14,12 +14,16 @@ SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 def repository_parts(value: str):
     parsed = urlsplit(value)
+    try:
+        port_ok = parsed.port in (None, 443)
+    except ValueError:
+        return None
     if (
         parsed.scheme != "https"
         or parsed.hostname != "github.com"
         or parsed.username is not None
         or parsed.password is not None
-        or parsed.port not in (None, 443)
+        or not port_ok
         or parsed.query
         or parsed.fragment
     ):
@@ -36,8 +40,10 @@ def validate_manifest(data: object) -> list[str]:
         return ["manifest must be a JSON object"]
     if data.get("schema_version") != "1.0.0":
         errors.append("schema_version must be 1.0.0")
-    if not isinstance(data.get("collection"), str) or not data["collection"].strip():
-        errors.append("collection must be a non-empty string")
+    for field in ("collection", "maintainer", "tagline"):
+        value = data.get(field)
+        if not isinstance(value, str) or not value.strip():
+            errors.append(f"{field} must be a non-empty string")
     if not isinstance(data.get("projects"), list) or not data["projects"]:
         return errors + ["projects must be a non-empty array"]
 
